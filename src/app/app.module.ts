@@ -6,17 +6,19 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { TodosModule } from './modules/todos/todos.module';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    TodosModule
+    TodosModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,8 @@
-<p>active-todos works!</p>
+<main>
+  <app-todo-input></app-todo-input>
+
+  <div *ngFor="let actTodo of activeTodos">
+    <li *ngIf="!actTodo.isComplete">{{actTodo.name}}</li>
+  </div>
+</main>
+

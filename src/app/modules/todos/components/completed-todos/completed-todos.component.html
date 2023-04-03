@@ -1,1 +1,5 @@
-<p>completed-todos works!</p>
+<main>
+  <div *ngFor="let completedTodo of completedTodos">
+    <li *ngIf="completedTodo.isComplete">{{completedTodo.name}} <button (click)="deleteTodo(completedTodo.id)">eliminar</button></li>
+  </div>
+</main>

@@ -1,1 +1,4 @@
-<p>all-todos works!</p>
+<main>
+  <app-todo-input (todoOut)="addTodo($event)"></app-todo-input>
+  <li *ngFor="let todo of todos">{{todo?.name}}</li>
+</main>
