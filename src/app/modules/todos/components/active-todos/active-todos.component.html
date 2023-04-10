@@ -1,8 +1,20 @@
 <main>
-  <app-todo-input></app-todo-input>
+  <app-todo-input (todoOut)="addTodo($event)"></app-todo-input>
 
-  <div *ngFor="let actTodo of activeTodos">
-    <li *ngIf="!actTodo.isComplete">{{actTodo.name}}</li>
-  </div>
+  <ng-container *ngIf="activeTodos.length >= 1; else noContent">
+    <ul class="list-container">
+      <li class="list-el" *ngFor="let actTodo of activeTodos">
+        <button
+          (click)="onChangeActive(actTodo)"
+          [ngClass]="{'striked':actTodo.isComplete}"
+          class="todo-btn"
+          *ngIf="!actTodo.isComplete"
+        >{{actTodo?.name}}</button>
+      </li>
+    </ul>
+  </ng-container>
+  <ng-template #noContent>
+    <app-no-todos [pageMessage]="pageMessage"></app-no-todos>
+  </ng-template>
 </main>
 

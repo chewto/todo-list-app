@@ -1,5 +1,13 @@
 <main>
-  <div *ngFor="let completedTodo of completedTodos">
-    <li *ngIf="completedTodo.isComplete">{{completedTodo.name}} <button (click)="deleteTodo(completedTodo.id)">eliminar</button></li>
-  </div>
+  <ng-container *ngIf="completedTodos.length >= 1; else noContent">
+    <ul class="list-container">
+      <li class="list-el" *ngFor="let completedTodo of completedTodos">
+        <span *ngIf="completedTodo.isComplete">{{completedTodo.name}}</span> <button (click)="deleteTodo(completedTodo.id)" class="delete-btn">delete</button>
+      </li>
+    </ul>
+  </ng-container>
+
+  <ng-template #noContent>
+    <app-no-todos [pageMessage]="pageMessage"></app-no-todos>
+  </ng-template>
 </main>

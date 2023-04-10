@@ -1,0 +1,33 @@
+$firstColor: #007bce;
+$secondColor: #4e4e4e;
+$thirdColor: #000;
+$requiredColor: #4d0000;
+
+$requiredColorHover: #4d0000;
+$firstColorHover: #008cff;
+
+.striked{
+  text-decoration: line-through;
+}
+
+.list-container{
+  width: 95vw;
+  text-align: center;
+  list-style: none;
+  .list-el{
+    margin: 15px 0;
+    .todo-btn{
+      padding: 5px 15px;
+      font-size: 15px;
+      background: none;
+      cursor: pointer;
+      transition: 350ms all;
+      border: 2px solid $thirdColor;
+
+      &:hover{
+        background: none;
+        border-radius: 8px;
+      }
+    }
+  }
+}

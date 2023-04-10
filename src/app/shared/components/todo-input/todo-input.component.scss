@@ -1,0 +1,44 @@
+@import '../../styles/styles-vars.scss';
+
+.form-container{
+  margin: 20px 0;
+
+  .form{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+
+    .input-todo{
+      width: 30vw;
+      height: 30px;
+
+      &:focus{
+        outline: none;
+      }
+    }
+
+    .input-btn{
+      background: $firstColor;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: 350ms;
+
+      &:hover{
+        background: $firstColorHover;
+      }
+    }
+
+    .invalid{
+      background: $requiredColor;
+      &:hover{
+        background: $requiredColorHover;
+      }
+    }
+
+    label{
+      display: flex;
+      align-items: center;
+    }
+  }
+}

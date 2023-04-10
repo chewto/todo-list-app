@@ -25,4 +25,10 @@ export class TodoService {
     return this.http.delete(this.apiURL);
   }
 
+  public updateTodo(todo:Todo, id:number | undefined): Observable<Todo>{
+    let api = `${this.apiURL}/${id}`;
+    return this.http.put<Todo>(api, todo);
+    api = '';
+  }
+
 }

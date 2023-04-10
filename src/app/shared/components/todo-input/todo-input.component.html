@@ -1,8 +1,12 @@
-<main>
-  <form [formGroup]="todoInput">
-    <input type="text" class="input-todo" formControlName="todo">
-    <button type="button" (click)="sendTodo()">add todo</button>
+<div class="form-container">
+  <form class="form">
+    <input type="text" class="input-todo" [formControl]="todoInput" required>
+    <input type="submit" (click)="sendTodo($event)" [disabled]="!todoInput.valid" class="input-btn" [ngClass]="{'invalid':!todoInput.valid}" value="add todo">
+    <button id="voice-search" type="button" (click)="voiceTodo()" class="input-btn">
+      <span class="material-symbols-outlined micro">
+        mic
+      </span>
+    </button>
+    <label *ngIf="todoInput.errors?.['required']">the input is required</label>
   </form>
-
-
-</main>
+</div>

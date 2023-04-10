@@ -6,6 +6,8 @@ import { AllTodosComponent } from './components/all-todos/all-todos.component';
 import { CompletedTodosComponent } from './components/completed-todos/completed-todos.component';
 import { TodoInputComponent } from 'src/app/shared/components/todo-input/todo-input.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NoTodosComponent } from 'src/app/shared/components/no-todos/no-todos.component';
+import { AngularMaterialModule } from 'src/app/shared/modules/angular-material/angular-material.module';
 
 
 
@@ -14,12 +16,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     ActiveTodosComponent,
     AllTodosComponent,
     CompletedTodosComponent,
-    TodoInputComponent
+    TodoInputComponent,
+    NoTodosComponent
   ],
   imports: [
     CommonModule,
     TodosRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularMaterialModule
   ]
 })
 export class TodosModule { }
