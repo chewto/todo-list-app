@@ -1,6 +1,6 @@
 import { SpeechRecognitionService } from './../../../services/speech-recognition.service';
 import { TodoService } from './../../../services/todo.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
 import { Todo } from 'src/app/models/todos.model';
@@ -11,11 +11,16 @@ import { Subject } from 'rxjs';
   templateUrl: './todo-input.component.html',
   styleUrls: ['./todo-input.component.scss']
 })
-export class TodoInputComponent{
+export class TodoInputComponent implements OnInit{
 
   @Output() todoOut = new EventEmitter<Todo>();
   public todoFromInput!:Todo;
-  public voiceInput!: Subject<string>;
+  public langList:string[] = ['es-ES','en-US'];
+  public langInput = new FormControl('en-US');
+  public todoInput = new FormControl('', [
+      Validators.required,
+      Validators.minLength(1)
+    ]);
 
   constructor(
     private todoSVC:TodoService,
@@ -24,13 +29,16 @@ export class TodoInputComponent{
     this.speechRecognitionSVC.start();
   }
 
-  public todoInput = new FormControl('', [
-      Validators.required,
-      Validators.minLength(1)
-    ])
+  ngOnInit(): void {
+    this.speechRecognitionSVC.recognition.lang = this.langInput.value;
+  }
 
+  public onVoiceSelect(){
+    const language:any = this.langInput.value;
+    this.speechRecognitionSVC.recognition.lang = language;
+  }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public sendTodo(event:any){
+  public onSendTodo(event:any){
     event.preventDefault();
 
     const infoTodo = {
@@ -43,10 +51,12 @@ export class TodoInputComponent{
     });
   }
 
-  public voiceTodo(){
+  public onVoiceTodo(){
     this.speechRecognitionSVC.hear();
     this.speechRecognitionSVC.text$.subscribe(res => {
       this.todoInput.setValue(res);
+      console.log(res);
     })
   }
+
 }

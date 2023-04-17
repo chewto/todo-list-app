@@ -2,7 +2,7 @@
   <ng-container *ngIf="completedTodos.length >= 1; else noContent">
     <ul class="list-container">
       <li class="list-el" *ngFor="let completedTodo of completedTodos">
-        <span *ngIf="completedTodo.isComplete">{{completedTodo.name}}</span> <button (click)="deleteTodo(completedTodo.id)" class="delete-btn">delete</button>
+        <span *ngIf="completedTodo.isComplete">{{completedTodo.name}}</span> <button (click)="onDeleteTodo(completedTodo.id)" class="delete-btn">delete</button>
       </li>
     </ul>
   </ng-container>

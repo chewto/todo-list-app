@@ -1,12 +1,15 @@
 <div class="form-container">
   <form class="form">
     <input type="text" class="input-todo" [formControl]="todoInput" required>
-    <input type="submit" (click)="sendTodo($event)" [disabled]="!todoInput.valid" class="input-btn" [ngClass]="{'invalid':!todoInput.valid}" value="add todo">
-    <button id="voice-search" type="button" (click)="voiceTodo()" class="input-btn">
+    <input type="submit" (click)="onSendTodo($event)" [disabled]="!todoInput.valid" class="input-btn" [ngClass]="{'invalid':!todoInput.valid}" value="add todo">
+    <button id="voice-search" type="button" (click)="onVoiceTodo()" class="input-btn">
       <span class="material-symbols-outlined micro">
         mic
       </span>
     </button>
-    <label *ngIf="todoInput.errors?.['required']">the input is required</label>
+    <select [formControl]="langInput"  class="lang-select">
+      <option *ngFor="let lang of langList" [value]="lang">{{lang}}</option>
+    </select>
   </form>
+  <span class="lang-message">current language detection: {{langInput.value}}</span>
 </div>

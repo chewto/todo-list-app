@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Todo } from './../../../../models/todos.model';
 import { TodoService } from './../../../../services/todo.service';
 import { Subject, takeUntil } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-all-todos',
@@ -14,11 +15,12 @@ export class AllTodosComponent implements OnInit, OnDestroy{
   public todos:Todo[] = [];
   public pageMessage = "no todo's available"
   private destroySuscription$ = new Subject<void>();
-  private apiUrl = 'https://localhost:7140/TodoItems';
+  public langList:string[] = ['es-ES','en-US'];
+  public langInput = new FormControl('en-US');
 
   constructor(
     private todoSVC:TodoService,
-    private speechRecognitionSVC:SpeechSynthesisService
+    private speechSynthesisSVC:SpeechSynthesisService
   ){}
 
   ngOnInit(): void {
@@ -28,6 +30,12 @@ export class AllTodosComponent implements OnInit, OnDestroy{
       this.todos = res;
       console.log(this.todos)
     })
+  }
+
+  public onVoiceSelect(){
+    const language:any = this.langInput.value;
+    console.log(language)
+    this.speechSynthesisSVC.language = language;
   }
 
   public addTodo(todo:Todo){
@@ -47,10 +55,9 @@ export class AllTodosComponent implements OnInit, OnDestroy{
 
     this.todoSVC.updateTodo(todoPut, todo.id).subscribe();
   }
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public speak(text:any){
-    this.speechRecognitionSVC.talk(text);
+  public onSpeak(text:any){
+    this.speechSynthesisSVC.talk(text);
   }
 
   ngOnDestroy(): void {

@@ -6,6 +6,23 @@ $requiredColor: #4d0000;
 $requiredColorHover: #4d0000;
 $firstColorHover: #008cff;
 
+@mixin input-btn{
+  background: $firstColor;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 350ms;
+
+  &:hover{
+    background: $firstColorHover;
+  }
+}
+
+.lang-select{
+  @include input-btn();
+  outline: none;
+}
+
 .striked{
   text-decoration: line-through;
 }
@@ -22,12 +39,7 @@ $firstColorHover: #008cff;
       background: none;
       cursor: pointer;
       transition: 350ms all;
-      border: 2px solid $thirdColor;
-
-      &:hover{
-        background: none;
-        border-radius: 8px;
-      }
+      border: none;
     }
   }
 }

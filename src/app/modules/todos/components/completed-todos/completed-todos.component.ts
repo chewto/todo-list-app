@@ -28,7 +28,7 @@ export class CompletedTodosComponent implements OnInit, OnDestroy{
     })
   }
 
-  public deleteTodo(id:number | undefined){
+  public onDeleteTodo(id:number | undefined){
     this.todoSVC.deleteTodo(id).subscribe(res => console.log(res));
     this.completedTodos = this.completedTodos.filter( todo => todo.id != id);
     location.reload();

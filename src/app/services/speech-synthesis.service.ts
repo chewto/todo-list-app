@@ -8,10 +8,11 @@ const synth = window.speechSynthesis;
 })
 export class SpeechSynthesisService {
 
-  private voices = synth.getVoices()
+  public language = '';
 
   public talk(text:string|undefined){
     const synthesis = new SpeechSynthesisUtterance(text);
+    synthesis.lang = this.language;
     synthesis.pitch = 1;
     synthesis.rate = 1;
     synth.speak(synthesis);

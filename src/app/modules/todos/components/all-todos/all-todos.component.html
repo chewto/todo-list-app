@@ -1,8 +1,13 @@
 <main>
   <app-todo-input (todoOut)="addTodo($event)"></app-todo-input>
   <ng-container *ngIf="todos.length >= 1; else noContent">
-    <ul class="list-container">
-      <li class="list-el" *ngFor="let todo of todos"><button (click)="onChangeActive(todo)" [ngClass]="{'striked':todo.isComplete}" class="todo-btn">{{todo?.name}}</button><button type="button" (click)="speak(todo.name)">hear</button> </li>
+    <div class="container-selector">
+      <select [formControl]="langInput"  class="lang-select" (click)="onVoiceSelect()">
+        <option *ngFor="let lang of langList" [value]="lang">{{lang}}</option>
+      </select>
+    </div>
+    <ul class="list-container" >
+      <li class="list-el" *ngFor="let todo of todos"><button (click)="onChangeActive(todo)" [ngClass]="{'striked':todo.isComplete}" class="todo-btn">{{todo?.name}}</button><button type="button" class="button" (click)="onSpeak(todo.name)">hear</button> </li>
     </ul>
   </ng-container>
   <ng-template #noContent>

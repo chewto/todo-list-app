@@ -1,1 +1,14 @@
 @import '../../../../shared/styles/styles-vars.scss';
+
+
+.container-selector{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.button{
+  @include input-btn();
+  padding: 5px 6px;
+  margin: 0 0 0 10px;
+}
