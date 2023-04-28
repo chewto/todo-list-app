@@ -1,3 +1,9 @@
+#to add todos and that kind of stuff, you need to use the api i'd created before 
+
+## api = https://github.com/chewto/todo-list-api
+
+
+
 # TodoListProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
